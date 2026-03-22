@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample: Expense Categorization — NumberCrunch</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 32px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid #1e3a5f; padding-bottom: 16px; }
+  .logo { font-weight: 800; font-size: 20px; color: #f59e0b; letter-spacing: -0.5px; }
+  .meta { font-size: 13px; color: #64748b; }
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stat { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px 20px; }
+  .stat-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .stat-value { font-size: 26px; font-weight: 800; color: #f1f5f9; }
+  .stat-value.amber { color: #f59e0b; }
+  .stat-value.green { color: #4ade80; }
+  h2 { font-size: 15px; color: #94a3b8; font-weight: 600; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #1e293b; color: #94a3b8; font-weight: 600; text-align: left; padding: 10px 14px; border-bottom: 1px solid #334155; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 10px 14px; border-bottom: 1px solid #1e293b; color: #e2e8f0; }
+  tr:last-child td { border-bottom: none; }
+  tr.review td { background: rgba(251,146,60,0.06); }
+  tr.review td:first-child { border-left: 3px solid #f59e0b; }
+  .gl-chip { display: inline-block; background: #1e3a5f; color: #93c5fd; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
+  .conf-high { color: #4ade80; font-size: 12px; }
+  .conf-mid { color: #fbbf24; font-size: 12px; }
+  .conf-low { color: #f87171; font-size: 12px; }
+  .cta { margin-top: 32px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .cta-text { font-size: 14px; color: #94a3b8; }
+  .cta-text strong { color: #f1f5f9; }
+  .cta-email { background: #f59e0b; color: #0f172a; font-weight: 700; font-size: 13px; padding: 10px 20px; border-radius: 6px; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="header">
+  <span class="logo">NumberCrunch</span>
+  <span class="meta">Expense Categorization · Tech Startup · 84 transactions · March 2024</span>
+</div>
+
+<h2>Summary</h2>
+<div class="summary-grid">
+  <div class="stat"><div class="stat-label">Transactions</div><div class="stat-value">84</div></div>
+  <div class="stat"><div class="stat-label">Auto-Categorized</div><div class="stat-value green">79</div></div>
+  <div class="stat"><div class="stat-label">Needs Review</div><div class="stat-value amber">5</div></div>
+  <div class="stat"><div class="stat-label">Total Amount</div><div class="stat-value">$48,290</div></div>
+</div>
+
+<h2>Categorized Transactions (sample)</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>GL Code</th>
+      <th>Category</th>
+      <th>Confidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2024-03-01</td>
+      <td>AWS - Amazon Web Services</td>
+      <td>$4,218.40</td>
+      <td><span class="gl-chip">6100</span></td>
+      <td>Cloud Infrastructure</td>
+      <td class="conf-high">✓ High</td>
+    </tr>
+    <tr>
+      <td>2024-03-01</td>
+      <td>GITHUB COPILOT BUSINESS</td>
+      <td>$380.00</td>
+      <td><span class="gl-chip">6110</span></td>
+      <td>Software — Dev Tools</td>
+      <td class="conf-high">✓ High</td>
+    </tr>
+    <tr>
+      <td>2024-03-03</td>
+      <td>DELTA AIR LINES 006-2891044</td>
+      <td>$847.20</td>
+      <td><span class="gl-chip">7200</span></td>
+      <td>Travel — Airfare</td>
+      <td class="conf-high">✓ High</td>
+    </tr>
+    <tr>
+      <td>2024-03-05</td>
+      <td>AMZN MKTP US*2K8PQ</td>
+      <td>$234.15</td>
+      <td><span class="gl-chip">5500</span></td>
+      <td>Office Supplies</td>
+      <td class="conf-mid">~ Medium</td>
+    </tr>
+    <tr>
+      <td>2024-03-07</td>
+      <td>GOOGLE WORKSPACE</td>
+      <td>$252.00</td>
+      <td><span class="gl-chip">6120</span></td>
+      <td>Software — Productivity</td>
+      <td class="conf-high">✓ High</td>
+    </tr>
+    <tr>
+      <td>2024-03-10</td>
+      <td>GUSTO PAYROLL SERVICES</td>
+      <td>$18,400.00</td>
+      <td><span class="gl-chip">7000</span></td>
+      <td>Payroll — Processing</td>
+      <td class="conf-high">✓ High</td>
+    </tr>
+    <tr>
+      <td>2024-03-12</td>
+      <td>STRIPE PAYMENTS</td>
+      <td>$1,204.88</td>
+      <td><span class="gl-chip">6130</span></td>
+      <td>Payment Processing</td>
+      <td class="conf-high">✓ High</td>
+    </tr>
+    <tr>
+      <td>2024-03-14</td>
+      <td>HOTEL NIKKO SAN FRANCISCO</td>
+      <td>$629.00</td>
+      <td><span class="gl-chip">7210</span></td>
+      <td>Travel — Lodging</td>
+      <td class="conf-high">✓ High</td>
+    </tr>
+    <tr class="review">
+      <td>2024-03-18</td>
+      <td>COSTCO WHSE #0123</td>
+      <td>$1,847.32</td>
+      <td><span class="gl-chip">9999</span></td>
+      <td>⚠️ Needs Review</td>
+      <td class="conf-low">✗ Low — mixed purchase</td>
+    </tr>
+    <tr class="review">
+      <td>2024-03-22</td>
+      <td>ACH TRANSFER - CONSULTING</td>
+      <td>$8,500.00</td>
+      <td><span class="gl-chip">9999</span></td>
+      <td>⚠️ Needs Review</td>
+      <td class="conf-low">✗ Low — ambiguous payee</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="cta">
+  <div class="cta-text"><strong>This is a real NumberCrunch deliverable.</strong> Email a CSV export, get back a fully categorized workpaper in 24 hours. $149/task.</div>
+  <a class="cta-email" href="mailto:numbercrunch@agentmail.to?subject=Free%20Sample%20Task%20Request">Try it free →</a>
+</div>
+<div style="text-align:center;padding:20px 0 12px;font-size:14px;color:#6b7280;">
+  More samples:
+  <a href="sample.html" style="color:#1e3a5f;font-weight:600;margin:0 8px;">Bank Reconciliation →</a>
+  <a href="gallery-variance.html" style="color:#1e3a5f;font-weight:600;margin:0 8px;">Variance Analysis →</a>
+  <a href="index.html" style="color:#1e3a5f;font-weight:600;margin:0 8px;">← Home</a>
+</div>
+</body>
+</html>

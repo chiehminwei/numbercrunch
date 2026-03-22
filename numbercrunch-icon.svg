@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <!-- Background -->
+  <rect width="240" height="240" rx="48" fill="#0f172a"/>
+  
+  <!-- Spreadsheet grid icon -->
+  <rect x="52" y="58" width="136" height="104" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Header row -->
+  <rect x="52" y="58" width="136" height="28" rx="8" fill="#1e3a5f"/>
+  <rect x="52" y="74" width="136" height="12" fill="#1e3a5f"/>
+  
+  <!-- Grid lines vertical -->
+  <line x1="98" y1="86" x2="98" y2="162" stroke="#334155" stroke-width="1.5"/>
+  <line x1="144" y1="86" x2="144" y2="162" stroke="#334155" stroke-width="1.5"/>
+  
+  <!-- Grid lines horizontal -->
+  <line x1="52" y1="106" x2="188" y2="106" stroke="#334155" stroke-width="1.5"/>
+  <line x1="52" y1="126" x2="188" y2="126" stroke="#334155" stroke-width="1.5"/>
+  <line x1="52" y1="146" x2="188" y2="146" stroke="#334155" stroke-width="1.5"/>
+  
+  <!-- Data cells (amber colored to suggest filled data) -->
+  <rect x="56" y="90" width="38" height="12" rx="3" fill="#f59e0b" opacity="0.8"/>
+  <rect x="102" y="90" width="38" height="12" rx="3" fill="#f59e0b" opacity="0.5"/>
+  <rect x="148" y="90" width="36" height="12" rx="3" fill="#22c55e" opacity="0.7"/>
+  
+  <rect x="56" y="110" width="38" height="12" rx="3" fill="#94a3b8" opacity="0.5"/>
+  <rect x="102" y="110" width="38" height="12" rx="3" fill="#94a3b8" opacity="0.5"/>
+  <rect x="148" y="110" width="36" height="12" rx="3" fill="#22c55e" opacity="0.7"/>
+  
+  <rect x="56" y="130" width="38" height="12" rx="3" fill="#94a3b8" opacity="0.5"/>
+  <rect x="102" y="130" width="38" height="12" rx="3" fill="#94a3b8" opacity="0.5"/>
+  <rect x="148" y="130" width="36" height="12" rx="3" fill="#22c55e" opacity="0.7"/>
+  
+  <!-- NC text at bottom -->
+  <text x="120" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" fill="#f59e0b" text-anchor="middle" letter-spacing="2">NC</text>
+</svg>

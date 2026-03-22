@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample Output — NumberCrunch</title>
+  <meta name="description" content="See a real NumberCrunch bank reconciliation output. Email a spreadsheet, get back a finished workpaper in 24 hours." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sample Output — NumberCrunch Bank Reconciliation Workpaper" />
+  <meta property="og:description" content="See what a finished NumberCrunch deliverable looks like — matched transactions, exception commentary, and action items." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sample Output — NumberCrunch" />
+  <meta name="twitter:description" content="See what a finished NumberCrunch deliverable looks like." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --navy: #1e3a5f;
+      --amber: #d97706;
+      --amber-light: #fef3c7;
+      --green: #166534;
+      --green-bg: #f0fdf4;
+      --yellow-bg: #fefce8;
+      --red: #991b1b;
+      --red-bg: #fef2f2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    .topbar {
+      background: var(--navy);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+    .logo span { color: var(--amber); }
+    .btn {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-amber { background: var(--amber); color: #fff; }
+    .btn-amber:hover { background: #b45309; text-decoration: none; }
+
+    /* ── Page ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+    .page-title { font-size: 28px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .page-sub { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
+
+    /* ── Workpaper card ── */
+    .workpaper {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .wp-header {
+      background: var(--navy);
+      color: #fff;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+    .wp-title { font-size: 18px; font-weight: 700; }
+    .wp-meta { font-size: 13px; color: rgba(255,255,255,0.7); }
+    .wp-body { padding: 24px; }
+
+    /* ── Summary grid ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+    .stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .stat-value { font-size: 22px; font-weight: 700; color: var(--navy); }
+    .stat-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Section headings ── */
+    .section-head {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      margin: 24px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* ── Tables ── */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead th {
+      background: var(--navy);
+      color: #fff;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    tbody tr:nth-child(even) { background: #f9fafb; }
+    tbody td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-green { background: var(--green-bg); color: var(--green); }
+    .badge-yellow { background: var(--yellow-bg); color: #854d0e; }
+    .badge-red { background: var(--red-bg); color: var(--red); }
+    .num { font-variant-numeric: tabular-nums; }
+    .neg { color: var(--red); }
+    .pos { color: var(--green); }
+
+    /* ── Exception rows ── */
+    .exc-cause { color: #6b3a0f; font-size: 12px; margin-top: 2px; }
+    .exc-action { color: var(--muted); font-size: 11px; margin-top: 2px; font-style: italic; }
+
+    /* ── CTA ── */
+    .cta-block {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 10px;
+      padding: 32px 28px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .cta-block h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .cta-block p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 20px; }
+    .cta-note { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 12px; }
+
+    /* ── Tabs ── */
+    .tab-nav { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 2px solid var(--line); padding-bottom: 0; }
+    .tab-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .tab-btn.active { color: var(--navy); border-bottom-color: var(--amber); }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    @media (max-width: 600px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .wp-header { flex-direction: column; gap: 4px; }
+      table { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Number<span>Crunch</span></div>
+  <a href="mailto:numbercrunch@agentmail.to?subject=Task%20Request" class="btn btn-amber">Send a task →</a>
+</div>
+
+<div class="container">
+  <div class="page-title">Sample workpaper output</div>
+  <div class="page-sub">Real output from a bank reconciliation task — dental practice, February 2026. Email us a spreadsheet, get back something like this in 24 hours.</div>
+
+  <!-- Workpaper -->
+  <div class="workpaper">
+    <div class="wp-header">
+      <div class="wp-title">Bank Reconciliation — Sunridge Dental Group</div>
+      <div class="wp-meta">Prepared by NumberCrunch · February 28, 2026</div>
+    </div>
+    <div class="wp-body">
+
+      <!-- Summary stats -->
+      <div class="summary-grid">
+        <div class="stat-card">
+          <div class="stat-label">Bank Transactions</div>
+          <div class="stat-value">12</div>
+          <div class="stat-sub">Feb 2026 statement</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">GL Entries</div>
+          <div class="stat-value">9</div>
+          <div class="stat-sub">QuickBooks export</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Match Rate</div>
+          <div class="stat-value" style="color:var(--amber)">75%</div>
+          <div class="stat-sub">8 of 12 matched exactly</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Exceptions</div>
+          <div class="stat-value" style="color:var(--red)">4</div>
+          <div class="stat-sub">See items below</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Net Difference</div>
+          <div class="stat-value neg">−$20,085</div>
+          <div class="stat-sub">Requires resolution</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="showTab('matched', this)">✓ Matched (8)</button>
+        <button class="tab-btn" onclick="showTab('exceptions', this)">⚠ Exceptions (4)</button>
+      </div>
+
+      <div id="matched" class="tab-pane active">
+        <div class="section-head">Matched transactions — exact amount + date</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Bank Date</th>
+              <th>Bank Description</th>
+              <th>GL Description</th>
+              <th>Amount</th>
+              <th>Match</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Feb 3</td>
+              <td>Stripe payout - patient pmts</td>
+              <td>Stripe settlement - Feb W1</td>
+              <td class="num pos">$18,420.00</td>
+              <td><span class="badge badge-green">EXACT</span></td>
+            </tr>
+            <tr>
+              <td>Feb 3</td>
+              <td>Henry Schein dental supplies</td>
+              <td>Henry Schein - supplies</td>
+              <td class="num neg">−$4,238.50</td>
+              <td><span class="badge badge-green">EXACT</span></td>
+            </tr>
+            <tr>
+              <td>Feb 5</td>
+              <td>Patterson Dental</td>
+              <td>Patterson Dental supplies</td>
+              <td class="num neg">−$1,875.20</td>
+              <td><span class="badge badge-green">EXACT</span></td>
+            </tr>
+            <tr>
+              <td>Feb 7</td>
+              <td>CIGNA insurance pmt</td>
+              <td>CIGNA claims payment</td>
+              <td class="num pos">$6,312.40</td>
+              <td><span class="badge badge-green">EXACT</span></td>
+            </tr>
+            <tr>
+              <td>Feb 10</td>
+              <td>Aetna claims settlement</td>
+              <td>Aetna settlement</td>
+              <td class="num pos">$4,100.00</td>
+              <td><span class="badge badge-green">EXACT</span></td>
+            </tr>
+            <tr>
+              <td>Feb 14</td>
+              <td>ADP payroll</td>
+              <td>ADP payroll Feb W2</td>
+              <td class="num neg">−$24,500.00</td>
+              <td><span class="badge badge-green">EXACT</span></td>
+            </tr>
+            <tr>
+              <td>Feb 18</td>
+              <td>Stripe payout - patient pmts</td>
+              <td>Stripe settlement - Feb W3</td>
+              <td class="num pos">$14,200.00</td>
+              <td><span class="badge badge-green">EXACT</span></td>
+            </tr>
+            <tr>
+              <td>Feb 20</td>
+              <td>United Healthcare</td>
+              <td>United Healthcare Feb</td>
+              <td class="num pos">$5,800.00</td>
+              <td><span class="badge badge-green">EXACT</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="exceptions" class="tab-pane">
+        <div class="section-head">Unmatched items — action required</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Possible Cause &amp; Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Feb 5</td>
+              <td>Check 2241 - lab fee</td>
+              <td class="num neg">−$1,250.00</td>
+              <td>
+                <div class="exc-cause">Outstanding check / ACH return — may clear next period</div>
+                <div class="exc-action">Confirm with payee; record in outstanding checks register</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Feb 12</td>
+              <td>Rent payment - office lease</td>
+              <td class="num neg">−$3,800.00</td>
+              <td>
+                <div class="exc-cause">Payment in bank but not recorded in GL</div>
+                <div class="exc-action">Locate invoice or payment authorization; post to GL</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Feb 28</td>
+              <td>Wire transfer - equipment</td>
+              <td class="num neg">−$15,000.00</td>
+              <td>
+                <div class="exc-cause">Month-end timing — payment clearing across period boundary</div>
+                <div class="exc-action">Verify GL booking date; may need accrual entry</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Feb 28</td>
+              <td>Bank service charge</td>
+              <td class="num neg">−$35.00</td>
+              <td>
+                <div class="exc-cause">Bank fee or service charge not recorded in GL</div>
+                <div class="exc-action">Post bank fee entry to GL; check recurring fee schedule</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:12px;font-size:12px;color:var(--muted)">
+          Total unmatched: <strong>−$20,085.00</strong> · Resolution required before period close
+        </p>
+      </div>
+
+    </div><!-- /wp-body -->
+  </div><!-- /workpaper -->
+
+  <!-- What you sent us -->
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;margin-bottom:32px;">
+    <div class="section-head" style="margin-top:0">What this customer sent us</div>
+    <div style="font-size:14px;color:var(--muted);line-height:1.7">
+      Two CSV exports: <code>feb_bank_statement.csv</code> (12 rows) and <code>feb_qb_export.csv</code> (9 rows).<br>
+      Subject line: <em>"February bank rec — can you do this?"</em><br>
+      Turnaround: <strong>4 hours 12 minutes</strong>
+    </div>
+  </div>
+
+  <!-- More task types -->
+  <div class="section-head" style="margin-top:0">Other task types we handle</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px;">
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;">
+      <div style="font-weight:700;margin-bottom:4px;">Variance Analysis</div>
+      <div style="font-size:13px;color:var(--muted)">Budget vs actuals with flagged items, possible reasons, and next steps per line item.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;">
+      <div style="font-weight:700;margin-bottom:4px;">Expense Categorization</div>
+      <div style="font-size:13px;color:var(--muted)">Raw transactions assigned to GL codes with confidence scores. Needs-review tab for low-confidence items.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;">
+      <div style="font-weight:700;margin-bottom:4px;">Audit Sampling</div>
+      <div style="font-size:13px;color:var(--muted)">Statistical MUS or random samples with coverage %, selection rationale, and audit-ready formatting.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Want a workpaper like this?</h2>
+    <p>Email your spreadsheet to numbercrunch@agentmail.to — tell us what you need back, attach your file, and we'll deliver the finished workpaper within 24 hours.</p>
+    <a href="mailto:numbercrunch@agentmail.to?subject=Task%20Request&body=Hi%2C%0A%0AI%20need%20a%20[bank%20rec%20%2F%20variance%20analysis%20%2F%20expense%20categorization%20%2F%20audit%20sample]%20done.%0A%0AAttaching%20my%20spreadsheet.%0A%0AThanks" class="btn btn-amber" style="font-size:16px;padding:12px 28px;">
+      Send a task →
+    </a>
+    <div class="cta-note">$149 standard · $299 complex · $499/mo unlimited · Reply within 2 hours to confirm receipt</div>
+  </div>
+
+  <!-- More samples -->
+  <div style="text-align:center;padding:24px 0 8px;border-top:1px solid #e5e7eb;margin-top:32px;">
+    <p style="color:#6b7280;font-size:14px;margin-bottom:12px;">See more output samples:</p>
+    <a href="gallery-variance.html" style="display:inline-block;margin:4px 8px;padding:8px 20px;background:#f8f9fa;border:1px solid #e5e7eb;border-radius:6px;font-size:14px;color:#1e3a5f;text-decoration:none;font-weight:600;">Variance Analysis →</a>
+    <a href="gallery-expense.html" style="display:inline-block;margin:4px 8px;padding:8px 20px;background:#f8f9fa;border:1px solid #e5e7eb;border-radius:6px;font-size:14px;color:#1e3a5f;text-decoration:none;font-weight:600;">Expense Categorization →</a>
+    <a href="index.html" style="display:inline-block;margin:4px 8px;padding:8px 20px;background:#f8f9fa;border:1px solid #e5e7eb;border-radius:6px;font-size:14px;color:#1e3a5f;text-decoration:none;font-weight:600;">← Back to Home</a>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample: Variance Analysis — NumberCrunch</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 32px; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid #1e3a5f; padding-bottom: 16px; }
+  .logo { font-weight: 800; font-size: 20px; color: #f59e0b; letter-spacing: -0.5px; }
+  .meta { font-size: 13px; color: #64748b; }
+  .badge { background: #14532d; color: #4ade80; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .badge.warn { background: #7c2d12; color: #fb923c; }
+  h2 { font-size: 15px; color: #94a3b8; font-weight: 600; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stat { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px 20px; }
+  .stat-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .stat-value { font-size: 26px; font-weight: 800; color: #f1f5f9; }
+  .stat-value.amber { color: #f59e0b; }
+  .stat-value.red { color: #f87171; }
+  .stat-value.green { color: #4ade80; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #1e293b; color: #94a3b8; font-weight: 600; text-align: left; padding: 10px 14px; border-bottom: 1px solid #334155; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 10px 14px; border-bottom: 1px solid #1e293b; color: #e2e8f0; }
+  tr:last-child td { border-bottom: none; }
+  tr.flagged td { background: rgba(251,146,60,0.06); }
+  tr.flagged td:first-child { border-left: 3px solid #f59e0b; }
+  .flag { color: #f59e0b; font-size: 12px; }
+  .fav { color: #4ade80; font-size: 12px; }
+  .unfav { color: #f87171; font-size: 12px; }
+  .cta { margin-top: 32px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .cta-text { font-size: 14px; color: #94a3b8; }
+  .cta-text strong { color: #f1f5f9; }
+  .cta-email { background: #f59e0b; color: #0f172a; font-weight: 700; font-size: 13px; padding: 10px 20px; border-radius: 6px; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="header">
+  <span class="logo">NumberCrunch</span>
+  <span class="meta">Variance Analysis · Dental Practice Group · Q1 2024 · Generated 2024-04-02</span>
+</div>
+
+<h2>Summary</h2>
+<div class="summary-grid">
+  <div class="stat"><div class="stat-label">Total Line Items</div><div class="stat-value">42</div></div>
+  <div class="stat"><div class="stat-label">Items Flagged</div><div class="stat-value amber">11</div></div>
+  <div class="stat"><div class="stat-label">Favorable Variance</div><div class="stat-value green">$14,820</div></div>
+  <div class="stat"><div class="stat-label">Unfavorable Variance</div><div class="stat-value red">($31,450)</div></div>
+</div>
+
+<h2>Flagged Items — Variances &gt;10% and &gt;$500</h2>
+<table>
+  <thead>
+    <tr>
+      <th>GL Account</th>
+      <th>Budget</th>
+      <th>Actual</th>
+      <th>Variance $</th>
+      <th>Variance %</th>
+      <th>Direction</th>
+      <th>Flag</th>
+      <th>Possible Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="flagged">
+      <td>4000 · Patient Revenue</td>
+      <td>$285,000</td>
+      <td>$261,540</td>
+      <td>($23,460)</td>
+      <td>-8.2%</td>
+      <td class="unfav">▼ Unfavorable</td>
+      <td class="flag">⚠️ REVIEW</td>
+      <td>Seasonal drop or scheduling gap</td>
+    </tr>
+    <tr class="flagged">
+      <td>6100 · Dental Supplies</td>
+      <td>$18,500</td>
+      <td>$24,890</td>
+      <td>($6,390)</td>
+      <td>+34.5%</td>
+      <td class="unfav">▼ Unfavorable</td>
+      <td class="flag">⚠️ REVIEW</td>
+      <td>Bulk purchase or price increase</td>
+    </tr>
+    <tr class="flagged">
+      <td>6200 · Lab Fees</td>
+      <td>$12,000</td>
+      <td>$8,340</td>
+      <td>$3,660</td>
+      <td>-30.5%</td>
+      <td class="fav">▲ Favorable</td>
+      <td class="flag">⚠️ REVIEW</td>
+      <td>Lower case volume or lab rebate</td>
+    </tr>
+    <tr class="flagged">
+      <td>7100 · Payroll — Clinical</td>
+      <td>$82,000</td>
+      <td>$89,200</td>
+      <td>($7,200)</td>
+      <td>+8.8%</td>
+      <td class="unfav">▼ Unfavorable</td>
+      <td class="flag">⚠️ REVIEW</td>
+      <td>Overtime or temp coverage</td>
+    </tr>
+    <tr class="flagged">
+      <td>7400 · Marketing</td>
+      <td>$4,500</td>
+      <td>$1,200</td>
+      <td>$3,300</td>
+      <td>-73.3%</td>
+      <td class="fav">▲ Favorable</td>
+      <td class="flag">⚠️ REVIEW</td>
+      <td>Campaign deferred to Q2</td>
+    </tr>
+    <tr>
+      <td>5000 · Rent</td>
+      <td>$8,400</td>
+      <td>$8,400</td>
+      <td>$0</td>
+      <td>0.0%</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>5100 · Utilities</td>
+      <td>$1,800</td>
+      <td>$1,920</td>
+      <td>($120)</td>
+      <td>+6.7%</td>
+      <td class="unfav">▼ Unfavorable</td>
+      <td>—</td>
+      <td>Within tolerance</td>
+    </tr>
+    <tr>
+      <td>5300 · Insurance</td>
+      <td>$3,200</td>
+      <td>$3,200</td>
+      <td>$0</td>
+      <td>0.0%</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="cta">
+  <div class="cta-text"><strong>This is a real NumberCrunch deliverable.</strong> Email a spreadsheet, get back a finished variance package in 24 hours. $149/task.</div>
+  <a class="cta-email" href="mailto:numbercrunch@agentmail.to?subject=Free%20Sample%20Task%20Request">Try it free →</a>
+</div>
+<div style="text-align:center;padding:20px 0 12px;font-size:14px;color:#6b7280;">
+  More samples:
+  <a href="sample.html" style="color:#1e3a5f;font-weight:600;margin:0 8px;">Bank Reconciliation →</a>
+  <a href="gallery-expense.html" style="color:#1e3a5f;font-weight:600;margin:0 8px;">Expense Categorization →</a>
+  <a href="index.html" style="color:#1e3a5f;font-weight:600;margin:0 8px;">← Home</a>
+</div>
+</body>
+</html>
